@@ -31,8 +31,31 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="color.h">
+			<Option compile="1" />
+		</Unit>
+		<Unit filename="fecha.c">
+			<Option compilerVar="CC" />
+			<Option link="0" />
+		</Unit>
+		<Unit filename="fecha.h">
+			<Option compile="1" />
+		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="moto.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="moto.h">
+			<Option compile="1" />
+		</Unit>
+		<Unit filename="service.c">
+			<Option compilerVar="CC" />
+			<Option link="0" />
+		</Unit>
+		<Unit filename="service.h">
+			<Option compile="1" />
 		</Unit>
 		<Extensions>
 			<lib_finder disable_auto="1" />

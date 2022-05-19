@@ -1,0 +1,50 @@
+# depslib dependency file v1.0
+1652915728 source:c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"moto.h"
+	"color.h"
+	"fecha.h"
+	"service.h"
+
+1652913814 c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\color.h
+
+1652481051 c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\fecha.h
+
+1652917644 c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\moto.h
+	"service.h"
+	"fecha.h"
+	"color.h"
+	<string.h>
+
+1652482714 c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\service.h
+	"fecha.h"
+
+1652482286 source:c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\fecha.c
+	"fecha.h"
+
+1652913814 source:c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\color.h
+
+1652481051 source:c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\fecha.h
+
+1652915712 source:c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\moto.c
+	<stdio.h>
+	<stdlib.h>
+	"moto.h"
+
+1652917644 source:c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\moto.h
+	"service.h"
+	"fecha.h"
+	"color.h"
+	<string.h>
+
+1652480691 source:c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\service.c
+
+1652482714 source:c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\service.h
+	"fecha.h"
+
+1652913814 source:c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\color.c
+	<stdio.h>
+	<stdlib.h>
+	"color.h"
+
