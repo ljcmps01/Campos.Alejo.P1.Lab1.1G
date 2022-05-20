@@ -46,6 +46,9 @@ int main()
     {
         switch(menuMotos())
         {
+            case 1:     //Alta Moto
+                    altaMotos(lista,TAM,&proximoId);
+                break;
             case 4:     //Listar motos
                 listarMotos(lista,TAM,tipos,colores,TAMT,TAMC);
                 break;

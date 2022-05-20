@@ -4,6 +4,88 @@
 
 #define DATOSH 5
 
+int altaMotos(eMoto vec[],int tam, int *pNextId)
+{
+    system("cls");
+
+    int todoOk=0;
+    int indiceLibre;
+    int existeLibre= siguienteLibre(vec,tam,&indiceLibre);
+
+    eMoto nuevaMoto;
+
+    int listaCilindrada[5]={50,125,500,600,750};
+
+    if(vec!=NULL&&tam>0&&pNextId!=NULL)
+    {
+        if(existeLibre)
+        {
+            printf("indice libre: %d\n",indiceLibre);
+            printf("Ingresar marca: ");
+            fflush(stdin);
+            scanf("%20s",nuevaMoto.marca);
+            printf("Se ingreso la marca: %s\n\n",nuevaMoto.marca);
+
+            //listarTipos()
+            printf("Ingresar tipo: ");
+            nuevaMoto.idTipo=IngresarIntValido(1000,1003);
+            printf("Se ingreso el tipo %d\n",nuevaMoto.idTipo);
+
+            //listarColores()
+            printf("Ingresar color: ");
+            nuevaMoto.idColor=IngresarIntValido(10000,10004);
+            printf("Se ingreso el color%d\n",nuevaMoto.idColor);
+
+            //listarCilindrada()
+            for(int i=0;i<5;i++)
+            {
+                printf("%d\t|\t%d\n",i,listaCilindrada[i]);
+            }
+            printf("Ingresar cilindrada: ");
+            nuevaMoto.cilindrada=listaCilindrada[IngresarIntValido(0,4)];
+            printf("Se ingreso la cilindrada %d\n",nuevaMoto.cilindrada);
+
+            printf("Ingresar puntaje (0:10): ");
+            nuevaMoto.puntaje=IngresarIntValido(0,10);
+            printf("Se ingreso el puntaje %d\n",nuevaMoto.puntaje);
+
+            nuevaMoto.id=(*pNextId)++;
+            nuevaMoto.isEmpty=0;
+            vec[indiceLibre]=nuevaMoto;
+
+            todoOk=1;
+        }
+        else
+        {
+            printf("No se encontró espacio libre en la lista\n");
+        }
+    }
+
+    system("PAUSE");
+    system("cls");
+    return todoOk;
+}
+
+int siguienteLibre(eMoto vec[], int tam,int *pIndex)
+{
+    int todoOk=0;
+
+    if(vec!=NULL&&tam>0&&pIndex!=NULL)
+    {
+        *pIndex=-1;
+        for(int i=0;i<tam;i++)
+        {
+            if(vec[i].isEmpty)
+            {
+                *pIndex=i;
+                todoOk=1;
+                break;
+            }
+        }
+    }
+    return todoOk;
+}
+
 int inicializarMotos(eMoto vec[], int tam)
 {
     int todoOk = 0;
@@ -146,10 +228,16 @@ int cargarDescripcionTipo(eTipo tipos[], int tam, int id, char desc[])
 int ordenarTipos(eMoto vec[],int cMotos, eTipo tipos[], int cTipo)
 {
     int cantMotos=0;
-    while(!(vec[cantMotos].isEmpty))
+
+    for(int i=0;i<cMotos;i++)
     {
-        cantMotos++;
+        if(!vec[i].isEmpty)
+        {
+            cantMotos++;
+        }
+
     }
+
     char descripcion[20];
     char descripcionSiguiente[20];
 
@@ -157,25 +245,34 @@ int ordenarTipos(eMoto vec[],int cMotos, eTipo tipos[], int cTipo)
 
     for(int i=0;i<cantMotos-1;i++)
     {
-        cargarDescripcionTipo(tipos,cTipo,vec[i].idTipo,descripcion);
-        for(int j=i+1;j<cantMotos;j++)
-        {
-            cargarDescripcionTipo(tipos,cTipo,vec[j].idTipo,descripcionSiguiente);
-            int comparacion=strcmp(descripcion,descripcionSiguiente);
-            if(comparacion>0)
+        if(!vec[i].isEmpty){
+            cargarDescripcionTipo(tipos,cTipo,vec[i].idTipo,descripcion);
+            for(int j=i+1;j<cantMotos;j++)
             {
-                aux=vec[i];
-                vec[i]=vec[j];
-                vec[j]=aux;
-            }
-            else
-            {
-                if(comparacion==0){
-                    if(vec[i].id>vec[j].id)
+                if(!vec[i].isEmpty){
+                    cargarDescripcionTipo(tipos,cTipo,vec[j].idTipo,descripcionSiguiente);
+                    int comparacion=strcmp(descripcion,descripcionSiguiente);
+                    if(comparacion>0)
                     {
                         aux=vec[i];
                         vec[i]=vec[j];
                         vec[j]=aux;
+
+                        cargarDescripcionTipo(tipos,cTipo,vec[i].idTipo,descripcion);
+                        cargarDescripcionTipo(tipos,cTipo,vec[j].idTipo,descripcionSiguiente);
+                    }
+                    else
+                    {
+                        if(comparacion==0){
+                            if(vec[i].id>vec[j].id)
+                            {
+                                aux=vec[i];
+                                vec[i]=vec[j];
+                                vec[j]=aux;
+                                cargarDescripcionTipo(tipos,cTipo,vec[i].idTipo,descripcion);
+                                cargarDescripcionTipo(tipos,cTipo,vec[j].idTipo,descripcionSiguiente);
+                            }
+                        }
                     }
                 }
             }

@@ -4,6 +4,7 @@
 #include "service.h"
 #include "fecha.h"
 #include "color.h"
+#include "utilidades.h"
 
 #include <string.h>
 
@@ -26,6 +27,8 @@ typedef struct
 
 #endif // MOTO_H_INCLUDED
 
+int altaMotos(eMoto vec[],int tam, int *pNextId);
+int siguienteLibre(eMoto vec[], int tam,int *pIndex);
 
 int inicializarMotos(eMoto vec[], int tam);
 int hardcodearMotos(eMoto vec[], int tam, int* pNextId);

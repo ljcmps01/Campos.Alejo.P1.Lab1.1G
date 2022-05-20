@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1652915728 source:c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\main.c
+1653004620 source:c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\main.c
 	<stdio.h>
 	<stdlib.h>
 	"moto.h"
@@ -11,10 +11,11 @@
 
 1652481051 c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\fecha.h
 
-1652917644 c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\moto.h
+1653015865 c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\moto.h
 	"service.h"
 	"fecha.h"
 	"color.h"
+	"utilidades.h"
 	<string.h>
 
 1652482714 c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\service.h
@@ -27,15 +28,16 @@
 
 1652481051 source:c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\fecha.h
 
-1652915712 source:c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\moto.c
+1653009327 source:c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\moto.c
 	<stdio.h>
 	<stdlib.h>
 	"moto.h"
 
-1652917644 source:c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\moto.h
+1653015865 source:c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\moto.h
 	"service.h"
 	"fecha.h"
 	"color.h"
+	"utilidades.h"
 	<string.h>
 
 1652480691 source:c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\service.c
@@ -47,4 +49,11 @@
 	<stdio.h>
 	<stdlib.h>
 	"color.h"
+
+1653016970 source:c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\utilidades.c
+	<stdio.h>
+	<stdlib.h>
+	"utilidades.h"
+
+1653016019 c:\users\administrador\documents\programas\utn\programacion i\campos.alejo.p1.lab1.1g\examenp1\utilidades.h
 
