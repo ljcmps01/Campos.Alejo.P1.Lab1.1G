@@ -4,13 +4,15 @@
 
 #define DATOSH 5
 
-int altaMotos(eMoto vec[],int tam, int *pNextId)
+
+//Opcion 1: ALTA MOTO
+int altaMotos(eMoto vec[],int tam, int *pNextId, eTipo vTipo[], int tamT, eColor vColor[], int tamC)
 {
     system("cls");
 
     int todoOk=0;
     int indiceLibre;
-    int existeLibre= siguienteLibre(vec,tam,&indiceLibre);
+    int existeLibre= siguienteMotoLibre(vec,tam,&indiceLibre);
 
     eMoto nuevaMoto;
 
@@ -26,17 +28,33 @@ int altaMotos(eMoto vec[],int tam, int *pNextId)
             scanf("%20s",nuevaMoto.marca);
             printf("Se ingreso la marca: %s\n\n",nuevaMoto.marca);
 
-            //listarTipos()
-            printf("Ingresar tipo: ");
-            nuevaMoto.idTipo=IngresarIntValido(1000,1003);
-            printf("Se ingreso el tipo %d\n",nuevaMoto.idTipo);
+            if(listarTipos(vTipo,tamT))
+            {
+                printf("Ingresar tipo: ");
+                nuevaMoto.idTipo=IngresarIntValido(vTipo[0].id,vTipo[tamT].id);
+                printf("Se ingreso el tipo %d\n",nuevaMoto.idTipo);
+            }
+            else
+            {
+                printf("Error listando tipos\n");
+                system("PAUSE");
+                return todoOk;
+            }
 
-            //listarColores()
-            printf("Ingresar color: ");
-            nuevaMoto.idColor=IngresarIntValido(10000,10004);
-            printf("Se ingreso el color%d\n",nuevaMoto.idColor);
 
-            //listarCilindrada()
+            if(listarColores(vColor, tamC))
+            {
+                printf("Ingresar color: ");
+                nuevaMoto.idColor=IngresarIntValido(vColor[0].id,vColor[tamC].id);
+                printf("Se ingreso el color%d\n",nuevaMoto.idColor);
+            }
+            else
+            {
+                printf("Error listando colores\n");
+                system("PAUSE");
+                return todoOk;
+            }
+
             for(int i=0;i<5;i++)
             {
                 printf("%d\t|\t%d\n",i,listaCilindrada[i]);
@@ -66,7 +84,7 @@ int altaMotos(eMoto vec[],int tam, int *pNextId)
     return todoOk;
 }
 
-int siguienteLibre(eMoto vec[], int tam,int *pIndex)
+int siguienteMotoLibre(eMoto vec[], int tam,int *pIndex)
 {
     int todoOk=0;
 
@@ -84,6 +102,119 @@ int siguienteLibre(eMoto vec[], int tam,int *pIndex)
         }
     }
     return todoOk;
+}
+
+int listarTipos(eTipo vTipo[],int tam)
+{
+    int todoOk=0;
+    if(vTipo!=NULL && tam >0)
+    {
+        printf("  id \t | \t %20s\n","descripcion");
+        printf("---------------------------------\n");
+        for(int i=0;i<tam;i++)
+        {
+            printf("%4d \t | \t %20s\n",vTipo[i].id,vTipo[i].descripcion);
+        }
+        todoOk=1;
+    }
+
+    return todoOk;
+}
+
+
+//OPCION 2:MODIFICAR MOTO
+int modificarMoto(eMoto vec[],int tam, int *pNextId, eTipo vTipo[], int tamT, eColor vColor[], int tamC)
+{
+    int todoOk=0;
+
+    eMoto modificadaMoto;
+    int id;
+    int indice;
+
+    listarMotos(vec,tam,vTipo,vColor,tamT,tamC);
+    printf("Ingresar ID de la moto a modificar: ");
+    do
+    {
+        id=IngresarIntValido(0,9999);
+        indice=buscarId(vec,tam,id); //retornar indice o -1 en caso de no encontrar match
+    }while(indice<0);
+
+    modificadaMoto=vec[indice];
+
+    switch(subMenuModificar())
+    {
+        case 0:     //Color
+            printf("Se desea modificar el color\n");
+            if(listarColores(vColor, tamC))
+            {
+                printf("Ingresar color: ");
+                modificadaMoto.idColor=IngresarIntValido(vColor[0].id,vColor[tamC].id);
+                printf("Se ingreso el color%d\n",modificadaMoto.idColor);
+            }
+            else
+            {
+                printf("Error listando colores\n");
+                system("PAUSE");
+                return todoOk;
+            }
+        break;
+        case 1:     //Puntaje
+
+            printf("Ingresar puntaje (0:10): ");
+            modificadaMoto.puntaje=IngresarIntValido(0,10);
+            printf("Se ingreso el puntaje %d\n",modificadaMoto.puntaje);
+            printf("Se desea modificar el puntaje\n");
+            break;
+    }
+
+    vec[indice]=modificadaMoto;
+    return todoOk;
+}
+
+int buscarId(eMoto vMotos[], int tam, int id)
+{
+    int indice=-1;
+
+    for(int i=0;i<tam;i++)
+    {
+        if(vMotos[i].id==id)
+        {
+            indice=i;
+            return indice;
+        }
+    }
+    printf("ID inexistente, ingresar ID valido\n");
+    return indice;
+}
+
+//OPCION 3: BAJA MOTO
+int bajaMoto(eMoto vec[],int tam, int *pNextId, eTipo vTipo[], int tamT, eColor vColor[], int tamC)
+{
+    int todoOk=0;
+
+    int id;
+    int indice;
+
+    listarMotos(vec,tam,vTipo,vColor,tamT,tamC);
+    printf("Ingresar ID de la moto a modificar: ");
+    do
+    {
+        id=IngresarIntValido(0,9999);
+        indice=buscarId(vec,tam,id); //retornar indice o -1 en caso de no encontrar match
+    }while(indice<0);
+
+    vec[indice].isEmpty=1;
+    return todoOk;
+}
+
+int subMenuModificar()
+{
+    int opcion;
+
+    printf ("0 - Color\n1 - puntaje\n\nQue desea modificar?");
+    opcion=IngresarIntValido(0,1);
+
+    return opcion;
 }
 
 int inicializarMotos(eMoto vec[], int tam)
@@ -131,6 +262,8 @@ int hardcodearMotos(eMoto vec[], int tam, int* pNextId)
 
 }
 
+
+
 int listarMotos(eMoto vec[], int tam, eTipo tipos[], eColor colores[], int tamTipo, int tamCol)
 {
     int todoOk = 0;
@@ -147,6 +280,34 @@ int listarMotos(eMoto vec[], int tam, eTipo tipos[], eColor colores[], int tamTi
             if( !vec[i].isEmpty)
             {
                 mostrarMotoFila(vec[i], tipos, tamTipo, colores, tamCol);
+                flag = 0;
+            }
+        }
+        if(flag)
+        {
+            printf("     No hay Motos en el sistema\n");
+        }
+
+        todoOk = 1;
+    }
+    return todoOk;
+}
+
+int listarMotosSimple(eMoto vec[], int tam)
+{
+    int todoOk = 0;
+    int flag = 1;
+    if( vec != NULL && tam > 0)
+    {
+        system("cls");
+        printf("*** Listado de Motos ***\n");
+        printf("   id       marca");
+        printf("-----------------------------------------------------------------------\n");
+        for(int i=0; i < tam; i++)
+        {
+            if( !vec[i].isEmpty)
+            {
+                printf("%4d \t|\t %20s\n",vec[i].id,vec[i].marca);
                 flag = 0;
             }
         }

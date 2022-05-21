@@ -10,12 +10,15 @@
 #define TAMT 4
 #define TAMC 5
 #define TAMS 4
+#define TAMW 10
 
 int main()
 {
     char salir = 'n';
+
     int proximoId = 1000;
     eMoto lista[TAM];
+
     eTipo tipos[TAMT]=
     {
         {1000, "Enduro" },
@@ -40,17 +43,36 @@ int main()
       {1003,"Cadena",390}
     };
 
+    int proximoIdW = 5000;
+    eTrabajo trabajos[TAMW];
+
     inicializarMotos(lista, TAM);
     hardcodearMotos(lista, TAM,&proximoId);
+
+    inicializarTrabajos(trabajos,TAMW);
     do
     {
         switch(menuMotos())
         {
             case 1:     //Alta Moto
-                    altaMotos(lista,TAM,&proximoId);
+                altaMotos(lista,TAM,&proximoId, tipos, TAMT,colores,TAMC);
+                break;
+            case 2:     //Modificar Moto
+                modificarMoto(lista,TAM,&proximoId, tipos, TAMT,colores,TAMC);
+                break;
+            case 3:     //Baja Moto
+                bajaMoto(lista,TAM,&proximoId, tipos, TAMT,colores,TAMC);
                 break;
             case 4:     //Listar motos
                 listarMotos(lista,TAM,tipos,colores,TAMT,TAMC);
+                break;
+            case 5:     //Listar tipos
+                system("cls");
+                listarTipos(tipos,TAMT);
+                break;
+            case 6:     //Listar colores
+                system("cls");
+                listarColores(colores,TAMC);
                 break;
             case 10:    //Salir
                 salir='s';
